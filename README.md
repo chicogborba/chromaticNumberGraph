@@ -1,6 +1,6 @@
 # Número Cromático para Grafos 🎨
 
-![Interface do projeto](readme_img.png)
+![Interface do projeto](./assets/readme_img.png)
 
 Este projeto é uma aplicação web interativa que permite visualizar e manipular grafos, explorando o conceito de número cromático e suas aplicações práticas. Com ele, os usuários podem adicionar nós, conectar nós, mover nós e executar algoritmos de coloração.
 
