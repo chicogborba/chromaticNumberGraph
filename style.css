@@ -23,32 +23,53 @@ h1 {
     margin: 0;
 }
 
-.instructions {
-    margin-bottom: 20px;
+.canvasContainer {
+    position: relative;
+    text-align: center;
+    max-width: 800px;
+    margin: auto; 
+    margin-bottom: 20px; 
+}
+
+canvas {
+    border: 1px solid #35424a;
+    margin-bottom: 10px;
+}
+
+
+select {
+    padding: 10px 15px; 
+    border: 2px solid #35424a;
+    border-radius: 5px; 
+    background-color: #fff;
+    color: #35424a; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: border-color 0.3s;
+}
+
+select:hover {
+    border-color: #4A6A76; 
+}
+
+select:focus {
+    outline: none; 
+    border-color: #6C8A97; 
+    box-shadow: 0 0 5px rgba(108, 138, 151, 0.5); 
+}
+
+
+.instructions, .coloring-info {
     background: #ffffff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     max-width: 800px; /* Max width same as canvas */
-    margin: auto; /* Center content */
+    margin: 20px auto; /* Center content and add margin */
 }
 
 h2 {
     color: #35424a;
-}
-
-h3 {
-    color: #2c3e50;
-}
-
-.coloring-info {
-    margin: 20px 0;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    max-width: 800px; /* Max width same as canvas */
-    margin: auto; /* Center content */
 }
 
 ul {
@@ -56,14 +77,10 @@ ul {
     margin-left: 20px;
 }
 
-.canvasContainer {
-    position: relative;
-    text-align: center;
-    max-width: 800px; /* Max width same as canvas */
-    margin: auto; /* Center content */
-}
-
 .zoomControls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     margin-bottom: 10px;
 }
 
@@ -80,11 +97,6 @@ button {
 
 button:hover {
     background: #2c3e50;
-}
-
-canvas {
-    border: 1px solid #35424a;
-    margin-bottom: 10px;
 }
 
 nav {
