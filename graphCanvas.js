@@ -99,7 +99,11 @@ class GraphCanvas {
             this.ctx.beginPath();
             this.ctx.moveTo(fromNode.x, fromNode.y);
             this.ctx.lineTo(toNode.x, toNode.y);
-            this.ctx.strokeStyle = 'black';
+            if(edge.highlighted) {
+                this.ctx.strokeStyle = 'red';
+            }else {
+              this.ctx.strokeStyle = 'black';
+            }
             this.ctx.lineWidth = 2;
             this.ctx.stroke();
         });
@@ -110,11 +114,28 @@ class GraphCanvas {
             this.ctx.arc(node.x, node.y, 20, 0, 2 * Math.PI);
             this.ctx.fillStyle = node.color;
             this.ctx.fill();
-            this.ctx.strokeStyle = index === this.selectedNode ? 'red' : 'black'; // Borda vermelha se o nó estiver selecionado
-            this.ctx.lineWidth = 2;
-            this.ctx.stroke();
+            if (node.blueBorder) {
+                this.ctx.strokeStyle = 'blue';
+                this.ctx.lineWidth = 5;
+                this.ctx.stroke();
+            }
+            if (node.orangeBorder) {
+                this.ctx.strokeStyle = 'orange';
+                this.ctx.lineWidth = 5;
+                this.ctx.stroke();
+            }
+            else {
+              this.ctx.strokeStyle = index === this.selectedNode ? 'red' : 'black'; // Borda vermelha se o nó estiver selecionado
+              this.ctx.lineWidth = 2;
+              this.ctx.stroke();
+            }
             this.ctx.fillStyle = 'black';
-            this.ctx.fillText(node.label, node.x - 10, node.y + 5);
+            // this.ctx.fillText(node.label, node.x , node.y);
+            // centralizar label e aumentar tamanho
+            this.ctx.font = '20px Arial';
+            this.ctx.textAlign = 'center';
+            this.ctx.textBaseline = 'middle';
+            this.ctx.fillText(node.label, node.x, node.y);
         });
     }
 

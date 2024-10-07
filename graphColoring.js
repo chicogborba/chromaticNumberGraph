@@ -2,69 +2,110 @@ class GraphColoring {
     constructor(graph, graphCanvas) {
         this.graph = graph;
         this.graphCanvas = graphCanvas;
-        this.colors = []; // Array para armazenar as cores dos nós
-        this.speed = 500; // Velocidade de execução (em milissegundos)
-        this.availableColors = ['lightblue', 'lightgreen', 'lightcoral', 'lightseagreen', 'lightsalmon', 'lightpink', 'lightsteelblue', 'lightgoldenrodyellow', 'lightcyan', 'lightgray']; // Cores disponíveis
+        this.colors = [];
+        this.speed = 1000;
+        this.availableColors = [
+          'lightblue', 
+          'lightgreen', 
+          'lightcoral', 
+          'lightseagreen', 
+          'lightsalmon', 
+          'lightpink', 
+          'lightsteelblue', 
+          'lightgoldenrodyellow', 
+          'lightcyan', 
+          'lightgray',
+        ];
     }
 
-    // Método para iniciar a coloração
-    async colorGraph() {
-        this.colors = new Array(this.graph.nodes.length).fill(-1); // -1 significa sem cor
-        let colorCount = 0; // Contador de cores usadas
+    generateRandomColor() {
+        return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    }
 
-        // Loop até que todos os nós sejam coloridos
+    updateSpeed(speed) {
+        this.speed = speed;
+    }
+    // Inicia a coloração dos nós
+    async colorGraph() {
+        this.colors = new Array(this.graph.nodes.length).fill(-1);
+        let colorCount = 0;
+
         for (let i = 0; i < this.graph.nodes.length; i++) {
-            // Tentar colorir o nó atual com a primeira cor disponível
+            await this.highlightNode(i, 'blue', true); // Destaca o nó atual
+
             if (await this.assignColor(i, colorCount)) {
-                colorCount++; // Incrementar o contador de cores
+                colorCount++;
             }
+
+            await this.highlightNode(i, 'blue', false);
         }
 
         console.log(`Número cromático: ${colorCount}`);
     }
 
-    // Método para tentar atribuir uma cor a um nó
+    // Tenta atribuir uma cor ao nó atual
     async assignColor(nodeIndex, colorCount) {
         for (let color = 0; color < colorCount; color++) {
-            if (this.isSafe(nodeIndex, color)) {
-                this.colors[nodeIndex] = color; // Atribuir a cor ao nó
-                await this.visualize(nodeIndex, color); // Visualizar a coloração
-                return true; // Cor atribuída com sucesso
+            if (await this.isSafe(nodeIndex, color)) {
+                this.colors[nodeIndex] = color;
+                await this.visualize(nodeIndex, color);
+                return true;
             }
         }
-        // Se não houver cores disponíveis, use a próxima cor
+
         this.colors[nodeIndex] = colorCount;
         await this.visualize(nodeIndex, colorCount);
         return true;
     }
 
-    // Método para verificar se é seguro colorir um nó
-    isSafe(nodeIndex, color) {
+    // Verifica se é seguro colorir o nó
+    async isSafe(nodeIndex, color) {
         for (const edge of this.graph.edges) {
-            if (edge.from === nodeIndex && this.colors[edge.to] === color) {
-                return false; // Conflito de cores
-            }
-            if (edge.to === nodeIndex && this.colors[edge.from] === color) {
-                return false; // Conflito de cores
+            if (edge.from === nodeIndex || edge.to === nodeIndex) {
+                const adjacentNodeIndex = edge.from === nodeIndex ? edge.to : edge.from;
+                await this.highlightEdge(edge, true);
+
+                if (this.colors[adjacentNodeIndex] === color) {
+                    await this.highlightEdge(edge, false);
+                    return false;
+                }
+
+                await this.highlightEdge(edge, false);
             }
         }
-        return true; // Seguro colorir
+
+        return true;
     }
 
-    // Método para visualizar a coloração do nó
+    // Visualiza a coloração do nó
     async visualize(nodeIndex, color) {
-        const node = this.graph.nodes[nodeIndex];
-        node.color = this.getColor(color); // Definir a cor do nó
-        this.graphCanvas.draw(); // Redesenhar o canvas
-        await this.delay(this.speed); // Aguardar a velocidade definida
+        this.graph.nodes[nodeIndex].color = this.getColor(color);
+        this.graphCanvas.draw();
+        await this.delay(this.speed);
     }
 
-    // Método para obter a cor correspondente a um índice
+    // Destaca uma aresta específica
+    async highlightEdge(edge, highlight) {
+        edge.highlighted = highlight;
+        this.graphCanvas.draw();
+        await this.delay(this.speed / 2);
+    }
+
+    // Destaca um nó específico
+    async highlightNode(nodeIndex, color, highlight) {
+        this.graph.nodes[nodeIndex][`${color}Border`] = highlight;
+        this.graphCanvas.draw();
+        await this.delay(this.speed / 2);
+    }
+
     getColor(index) {
-        return this.availableColors[index % this.availableColors.length]; // Ciclar pelas cores disponíveis
+        // Caso as cores tenham acabado, gera uma cor aleatória e a adiciona ao array de cores disponíveis
+        if (index >= this.availableColors.length) {
+            this.availableColors.push(this.generateRandomColor());
+        }
+        return this.availableColors[index % this.availableColors.length];
     }
 
-    // Método para criar um atraso
     delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }

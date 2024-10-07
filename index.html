@@ -25,6 +25,10 @@
           <div>
             <button id="zoom+">+</button>
             <button id="zoom-">-</button>
+            <div class="speedControl">
+                <label for="speedRange">Velocidade: <span id="speedValue">0500 ms</span></label>
+                <input type="range" id="speedRange" min="10" max="2000" step="10" value="500">
+            </div>
           </div>
           <div>
             <button id="startAlgorithm">Iniciar Algoritmo</button>
@@ -36,8 +40,12 @@
           </div>
         </div>
         <canvas id="graphCanvas" width="800" height="600" aria-label="Canvas do Grafo"></canvas>
-        <nav>
-            <button id="printGraph">Imprimir Grafo no Console</button>
+        <nav class="lowerButtons">
+          <div>
+            <button id="exportGraph">Exportar Grafo</button>
+            <input type="file" id="importGraph" accept=".txt" style="display: none;" />
+            <label for="importGraph" class="import">Importar Grafo</label>
+          </div>
             <button id="clearGraph">Limpar Grafo</button>
         </nav>
     </div>
@@ -71,6 +79,7 @@
     </footer>
 
     <!-- Carregamento de scripts -->
+    <script src="file.js" defer></script>
     <script src="graphColoring.js" defer></script>
     <script src="graph.js" defer></script>
     <script src="graphCanvas.js" defer></script>

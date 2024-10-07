@@ -6,30 +6,40 @@ class Node {
         this.y = y;
         this.color = color;
         this.label = label;
+        this.blueBorder = false;
+        this.orangeBorder = false;
     }
 }
 
 class Graph {
-    constructor() {
+    constructor(initialGraph) {
         this.nodes = [];
         this.edges = [];
+
+        // Se um grafo inicial for fornecido, insira-o
+        if (initialGraph) {
+            this.insertGraph(initialGraph);
+        }
     }
 
+    // Método para adicionar um nó
     addNode(x, y) {
-        const newNode = new Node(x, y, 'lightyellow', `Nó ${this.nodes.length}`);
+        const newNode = new Node(x, y, 'lightyellow', `${this.nodes.length}`);
         this.nodes.push(newNode);
     }
 
+    // Método para adicionar uma aresta
     addEdge(fromIndex, toIndex) {
         this.edges.push({ from: fromIndex, to: toIndex });
     }
 
+    // Método para deletar um nó
     deleteNode(nodeIndex) {
-      this.nodes.splice(nodeIndex, 1);
-      this.edges = this.edges.filter(edge => edge.from !== nodeIndex && edge.to !== nodeIndex);
+        this.nodes.splice(nodeIndex, 1);
+        this.edges = this.edges.filter(edge => edge.from !== nodeIndex && edge.to !== nodeIndex);
     }
 
-
+    // Método para encontrar o índice de um nó com base na posição
     getNodeIndex(x, y) {
         for (let i = 0; i < this.nodes.length; i++) {
             const node = this.nodes[i];
@@ -41,7 +51,7 @@ class Graph {
         return -1;
     }
 
-    // Formato clássico: Representação como lista de adjacência
+    // Método para imprimir o grafo como uma lista de adjacência
     printGraph() {
         const adjacencyList = {};
         this.nodes.forEach((_, index) => {
@@ -54,8 +64,31 @@ class Graph {
         console.log(adjacencyList);
     }
 
+    // Método para limpar o grafo
     clear() {
         this.nodes = [];
         this.edges = [];
+    }
+
+    // Método para inserir um grafo a partir de um objeto
+    insertGraph(graphObject) {
+        // Adicionar nós
+        graphObject.nodes.forEach(node => {
+            const newNode = new Node(node.x, node.y, node.color, node.label);
+            this.nodes.push(newNode);
+        });
+
+        // Adicionar arestas
+        graphObject.edges.forEach(edge => {
+            this.addEdge(edge.from, edge.to);
+        });
+    }
+
+    // Método para obter o grafo atual como um objeto
+    getGraph() {
+        return {
+            nodes: this.nodes,
+            edges: this.edges
+        };
     }
 }
