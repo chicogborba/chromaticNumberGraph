@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicação de Grafo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Numero Cromítico para Grafos</h1>
+    </header>
+    
+    <main>
+        <section class="instructions">
+            <section class="body">
+                <h2>Algoritmo</h2>
+                <p>
+                    O número cromático de um grafo é o menor número de cores que podem ser usadas para colorir os vértices de um grafo de modo que vértices adjacentes tenham cores diferentes.
+                </p>
+            </section>
+            <h2>Instruções</h2>
+            <ul>
+                <li><strong>Adicionar Nó:</strong> Clique em qualquer parte do canvas para adicionar um nó.</li>
+                <li><strong>Conectar Nós:</strong> Clique com o botão direito do mouse em um nó para selecioná-lo, e em seguida clique em outro nó para criar uma aresta.</li>
+                <li><strong>Mover Nó:</strong> Clique e segure um nó com o botão esquerdo do mouse para arrastá-lo para outra posição.</li> 
+                <li><strong>Mover Canvas:</strong> Use o checkbox para mover o canvas ao arrastar.</li>
+            </ul>
+        </section>
+
+        <section class="coloring-info">
+            <h2>Mais sobre o Número Cromático</h2>
+            <p>
+                O número cromático de um grafo \( G \) é denotado por \( \chi(G) \). Para um grafo bipartido, por exemplo, o número cromático é 2. No entanto, em grafos mais complexos, como o grafo completo \( K_n \), o número cromático é igual ao número de vértices \( n \).
+            </p>
+            <h3>Fórmula</h3>
+            <p>
+                A fórmula geral para calcular o número cromático pode ser desafiadora. O número cromático de um grafo pode ser determinado por algoritmos como o algoritmo de Welsh-Powell ou algoritmos de busca em profundidade. Nenhum algoritmo de tempo polinomial é conhecido para o problema de coloração de vértices em grafos gerais, o que o classifica como NP-hard.
+            </p>
+            <h3>Casos de Uso na Vida Real</h3>
+            <ul>
+                <li>Planejamento de horários de aulas, evitando conflitos entre turmas.</li>
+                <li>Alocação de recursos, como em redes de comunicação.</li>
+                <li>Desenho de circuitos eletrônicos onde componentes não podem se sobrepor.</li>
+            </ul>
+            <h3>Complexidade NP-Hard</h3>
+            <p>
+                O problema de coloração de vértices é NP-hard porque não existe um algoritmo eficiente conhecido que resolva todos os casos em tempo polinomial. Isso significa que, à medida que o tamanho do grafo aumenta, o tempo necessário para encontrar a coloração mínima pode crescer exponencialmente. Portanto, na prática, muitos algoritmos usam aproximações ou heurísticas para encontrar soluções razoáveis em um tempo aceitável.
+            </p>
+        </section>
+
+        <div class="canvasContainer">
+          <div class="zoomControls">
+            <button id="zoom+">+</button>
+            <button id="zoom-">-</button>
+          </div>
+          <canvas id="graphCanvas" width="800" height="600"></canvas>
+          <nav>
+            <button id="printGraph">Imprimir Grafo no Console</button>
+            <button id="clearGraph">Limpar Grafo</button>
+          </nav>
+        </div>
+    </main>
+
+    <script src="graph.js"></script>
+    <script src="graphCanvas.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
