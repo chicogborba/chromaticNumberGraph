@@ -8,6 +8,10 @@ document.getElementById('clearGraph').addEventListener('click', () => {
     graphCanvas.clear();
 });
 
+document.getElementById('clearColor').addEventListener('click', () => {
+    graphCanvas.clearColoring();
+});
+
 document.getElementById('zoom+').addEventListener('click', () => {
     graphCanvas.zoom(1.1);
 });

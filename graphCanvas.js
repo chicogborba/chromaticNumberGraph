@@ -151,4 +151,10 @@ class GraphCanvas {
         this.draggingNode = null;
         this.draw();
     }
+
+    clearColoring() {
+        this.graph.clearColoring();
+        this.draw();
+    }
+    
 }

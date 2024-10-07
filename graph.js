@@ -70,6 +70,17 @@ class Graph {
         this.edges = [];
     }
 
+    clearColoring() {
+        this.nodes.forEach(node => {
+            node.color = 'lightyellow';
+            node.blueBorder = false;
+            node.orangeBorder = false;
+        });
+        this.edges.forEach(edge => {
+            edge.highlighted = false
+        });
+    }
+
     // Método para inserir um grafo a partir de um objeto
     insertGraph(graphObject) {
         // Adicionar nós
