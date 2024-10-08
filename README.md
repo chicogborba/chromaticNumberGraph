@@ -13,7 +13,6 @@ A **Teoria dos Grafos** é um ramo da matemática que estuda as propriedades de 
 - ➕ **Adicionar Nós**: Clique em qualquer parte do canvas para adicionar um nó.
 - 🔗 **Conectar Nós**: Clique com o botão direito em um nó para selecioná-lo e clique em outro nó para criar uma aresta.
 - ✋ **Mover Nós**: Arraste um nó com o botão esquerdo do mouse para movê-lo.
-- 🖱️ **Mover Canvas**: Use o checkbox para mover o canvas ao arrastar.
 - 🔍 **Zoom**: Aumente ou diminua o zoom do canvas usando os botões de zoom.
 - ⚙️ **Algoritmos**: Selecione e inicie diferentes algoritmos de coloração.
 - 📤 **Exportar/Importar Grafos**: Exporte o grafo atual para um arquivo ou importe um grafo de um arquivo de texto.

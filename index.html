@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Aprenda sobre o número cromático de grafos e suas aplicações práticas.">
-    <!-- favicon -->
     <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
     <title>Número Cromático para Grafos</title>
     <link rel="stylesheet" href="./src/css/style.css">
 </head>
 <body>
     <header>
-        <h1>Número Cromático para Grafos 🎨</h1>
+        <h1>Número Cromático para Grafos</h1>
     </header>
     <section class="instructions">
-        <h2>Instruções para Interagir 💡</h2>
+        <h1>Instruções para Interagir 💡</h1>
         <ul>
-            <li><strong>➕ Adicionar Nó:</strong> Clique em qualquer parte do canvas para adicionar um nó.</li>
-            <li><strong>🔗 Conectar Nós:</strong> Clique com o botão direito do mouse em um nó para selecioná-lo e, em seguida, clique em outro nó para criar uma aresta.</li>
+            <li><strong>➕ Adicionar Nó:</strong> Clique com o botão esquerdo em qualquer parte do canvas para adicionar um nó.</li>
+            <li><strong>🔗 Conectar Nós:</strong> Clique com o botão direito do mouse em um nó para selecioná-lo e, em seguida, clique em outro nó com o botão direito novamente para criar uma aresta.</li>
             <li><strong>✋ Mover Nó:</strong> Clique e segure um nó com o botão esquerdo do mouse para arrastá-lo para outra posição.</li>
-            <li><strong>🖱️ Mover Canvas:</strong> Use o checkbox para mover o canvas ao arrastar.</li>
         </ul>
     </section>
     <div class="canvasContainer">
@@ -28,16 +26,14 @@
             <button id="zoom+">+</button>
             <button id="zoom-">-</button>
             <div class="speedControl">
-                <label for="speedRange">Velocidade: <span id="speedValue">0500 ms</span></label>
-                <input type="range" id="speedRange" min="10" max="2000" step="10" value="500">
+                <label for="speedRange">Velocidade: <span id="speedValue">0100 ms</span></label>
+                <input type="range" id="speedRange" min="10" max="2000" step="10" value="100">
             </div>
           </div>
-          <div>
+          <div class="flex">
             <button id="startAlgorithm">Iniciar Algoritmo</button>
             <select id="algorithmSelect">
-              <option value="algoritmo1">Algoritmo 1</option>
-              <option value="algoritmo2">Algoritmo 2</option>
-              <option value="algoritmo3">Algoritmo 3</option>
+              <option value="algoritmo1">Guloso</option>
             </select>
           </div>
         </div>
@@ -56,15 +52,19 @@
     </div>
 
     <section class="coloring-info">
-        <h2>O que é Teoria dos Grafos? 📊</h2>
+        <h1>O que é Teoria dos Grafos? 📊</h1>
         <p>
-            A <strong>Teoria dos Grafos</strong> é um ramo da matemática que estuda as propriedades de grafos, que são estruturas formadas por <strong>vértices</strong> (ou nós) e <strong>arestas</strong> (ou conexões). Ela é amplamente utilizada em várias áreas, como ciência da computação, redes de comunicação e biologia, para modelar e resolver problemas complexos.
+            A <strong>Teoria dos Grafos</strong> é um ramo da matemática que estuda as propriedades de grafos, que são estruturas formadas por <strong>vértices</strong> (ou nós) e <strong>arestas</strong> (ou conexões). Ela é amplamente utilizada em várias áreas, como ciência da computação, redes de comunicação e biologia, para modelar e resolver problemas complexos. Para saber mais, você pode visitar a <a href="https://pt.wikipedia.org/wiki/Teoria_dos_grafos" target="_blank">Wikipédia</a>.
         </p>
-        <h2>O que é o Número Cromático? 🌈</h2>
+        <h1>O que é o Número Cromático? 🌈</h1>
         <p>
             O <strong>número cromático</strong> de um grafo é o menor número de cores necessárias para colorir os vértices de forma que dois vértices adjacentes não compartilhem a mesma cor. Por exemplo, se tivermos um grafo com três vértices conectados, precisamos de pelo menos três cores diferentes para colorir cada um deles. Isso é fundamental para evitar conflitos, como na alocação de horários de aulas 🏫 ou na organização de tarefas em um projeto.
         </p>
-        <h2>Importância do Número Cromático ⚠️</h2>
+        <h1>História do Número Cromático 📜</h1>
+        <p>
+            O conceito de número cromático foi introduzido por <strong>Francis Guthrie</strong> em 1852, que se deparou com o problema ao tentar colorir um mapa da África de modo que países adjacentes não compartilhassem a mesma cor. Esse problema levou ao famoso <a href="https://pt.wikipedia.org/wiki/Teorema_das_quatro_cores" target="_blank">Teorema das Quatro Cores</a>, que afirma que quatro cores são suficientes para colorir qualquer mapa plano. A conjectura foi finalmente provada em 1976 por <strong>Kenneth Appel</strong> e <strong>Wolfgang Haken</strong> usando um método que envolvia computação.
+        </p>
+        <h1>Importância do Número Cromático ⚠️</h1>
         <p>
             O número cromático é um conceito importante na teoria dos grafos, pois está relacionado a várias aplicações práticas:
         </p>
@@ -73,21 +73,38 @@
             <li><strong>Design de Redes:</strong> Na construção de redes de comunicação, o número cromático ajuda a alocar canais de forma eficiente, minimizando interferências.</li>
             <li><strong>Jogo de Tabuleiro:</strong> Pode ser aplicado em jogos que envolvem peças que não podem estar próximas uma da outra.</li>
         </ul>
-        <h2>Complexidade NP-Completo 🚫</h2>
+        <h1>Complexidade NP-Completo 🚫</h1>
         <p>
-            O problema de determinar o número cromático de um grafo é classificado como <strong>NP-completo</strong>, o que significa que, embora seja possível verificar se uma coloração é válida em tempo polinomial, não se conhece um algoritmo eficiente que resolva o problema em todos os casos. À medida que o número de vértices e arestas aumenta, a dificuldade para encontrar a coloração mínima cresce exponencialmente, tornando a resolução desse problema um verdadeiro desafio para os matemáticos e cientistas da computação.
+            O problema de determinar o número cromático de um grafo é classificado como <strong><a href="https://pt.wikipedia.org/wiki/NP-completo" target="_blank">NP-completo</a></strong>, o que significa que, embora seja possível verificar se uma coloração é válida em tempo polinomial, não se conhece um algoritmo eficiente que resolva o problema em todos os casos. À medida que o número de vértices e arestas aumenta, a dificuldade para encontrar a coloração mínima cresce exponencialmente, tornando a resolução desse problema um verdadeiro desafio para os matemáticos e cientistas da computação.
+        </p>
+    </section>
+
+    <section class="coloring-info">
+        <h1>Algoritmos utilizados 🔍</h1>
+        <h3>Algoritmo Guloso</h3>
+        <p>
+            Este algoritmo é uma abordagem <strong>gulosa</strong> para colorir os nós de um grafo, garantindo que nenhum nó vizinho tenha a mesma cor. O funcionamento do algoritmo é baseado nas seguintes etapas:
+        </p>
+        <ol>
+            <li><strong>Objetivo:</strong> O algoritmo tenta colorir cada nó do grafo usando o menor número possível de cores.</li>
+            <li><strong>Escolha Local:</strong> Para cada nó, o algoritmo sempre tenta usar a <strong>primeira cor disponível</strong>. Se a cor já estiver sendo usada por um nó vizinho, ele pula para a próxima cor disponível.</li>
+            <li><strong>Processo Repetido:</strong> O algoritmo repete esse processo para todos os nós do grafo até que todos estejam coloridos.</li>
+            <li><strong>Resultado:</strong> O número de cores utilizadas nos dá o <strong>número cromático</strong> do grafo.</li>
+        </ol>
+        <p>
+            Esse método é eficiente porque sempre faz a melhor escolha local ao colorir cada nó, mas não garante a solução global mais otimizada. Para mais informações sobre algoritmos de coloração, confira esta <a href="https://pt.wikipedia.org/wiki/Colora%C3%A7%C3%A3o_de_grafos" target="_blank">página na Wikipédia</a>.
         </p>
     </section>
 
     <footer>
-        <p> 2024 - Número Cromático por <strong>Francisco Borba e Matheus Magri</strong></p>
+        <p>2024 - Número Cromático por <strong>Francisco Borba e Matheus Magri</strong></p>
     </footer>
 
-    <!-- Carregamento de scripts -->
-    <script src="./src/file.js" defer></script>
-    <script src="./src/graphColoring.js" defer></script>
-    <script src="./src/graph.js" defer></script>
-    <script src="./src/graphCanvas.js" defer></script>
-    <script src="./src/script.js" defer></script>
+    <script src="./src/js/file.js" defer></script>
+    <script src="./src/js/greedy.js" defer></script>
+    <script src="./src/js/backtracking.js" defer></script>
+    <script src="./src/js/graph.js" defer></script>
+    <script src="./src/js/graphCanvas.js" defer></script>
+    <script src="./src/js/script.js" defer></script>
 </body>
 </html>

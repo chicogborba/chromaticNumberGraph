@@ -1,7 +1,7 @@
 console.log('Script.js loaded');
 const graph = new Graph();
 const graphCanvas = new GraphCanvas('graphCanvas', graph);
-const graphColoring = new GraphColoring(graph, graphCanvas); 
+const greedyGraphColoring = new GreedyGraphColoring(graph, graphCanvas); 
 const fileHandler = new File(); 
 
 document.getElementById('clearGraph').addEventListener('click', () => {
@@ -21,7 +21,7 @@ document.getElementById('zoom-').addEventListener('click', () => {
 });
 
 document.getElementById('startAlgorithm').addEventListener('click', () => {
-    graphColoring.colorGraph(); 
+    greedyGraphColoring.colorGraph(); 
 });
 
 
@@ -29,7 +29,7 @@ document.getElementById('speedRange').addEventListener('input', function () {
     const speedValue = document.getElementById('speedRange').value;
     const speedValuePadded = speedValue.padStart(4, '0');
     document.getElementById('speedValue').textContent = `${speedValuePadded} ms`;
-    graphColoring.updateSpeed(speedValue);
+    greedyGraphColoring.updateSpeed(speedValue);
 });
 
 

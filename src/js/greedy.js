@@ -1,9 +1,9 @@
-class GraphColoring {
+class GreedyGraphColoring {
     constructor(graph, graphCanvas) {
         this.graph = graph;
         this.graphCanvas = graphCanvas;
         this.colors = [];
-        this.speed = 1000;
+        this.speed = 100;
         this.availableColors = [
           'lightblue', 
           'lightgreen', 
